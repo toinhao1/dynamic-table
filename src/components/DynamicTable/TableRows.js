@@ -1,19 +1,23 @@
-import React from "react";
-import TableCells from "./TableCells";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-const TableRows = props => {
-  return (
-    <>
-      {props.arrayOfRows &&
-        [...props.arrayOfRows].map((x, index) => {
-          return (
-            <tr key={index + "odfbeuwib"}>
-              <TableCells />
-            </tr>
-          );
-        })}
-    </>
-  );
+import TableCells from './TableCells';
+
+const TableRows = (props) => {
+	const { dropdown, data } = useSelector((state) => state);
+
+	return (
+		<>
+			{props.arrayOfRows &&
+				[...props.arrayOfRows].map((x, index) => {
+					return (
+						<tr key={index + 'odfbeuwib'}>
+							<TableCells />
+						</tr>
+					);
+				})}
+		</>
+	);
 };
 
 export default TableRows;
