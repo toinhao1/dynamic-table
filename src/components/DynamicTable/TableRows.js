@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import TableCells from './TableCells';
 
-const TableRows = ({ numberOfRows }) => {
+const TableRows = ({ numberOfRows, columnsToDisplay }) => {
 	const { parsedData } = useSelector((state) => state.data);
 
 	return (
@@ -14,7 +14,7 @@ const TableRows = ({ numberOfRows }) => {
 					.map((x, index) => {
 						return (
 							<tr key={x.id}>
-								<TableCells />
+								<TableCells columnsToDisplay={columnsToDisplay} />
 							</tr>
 						);
 					})}

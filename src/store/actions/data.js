@@ -6,7 +6,6 @@ export const LOAD_DATA = 'LOAD_DATA';
 export const loadDataToRedux = () => (dispatch) => {
 	const parsedData = {};
 	Object.keys(data.data).forEach((key) => {
-		// data.data[key].unshift();
 		parsedData[data.data[key][0].value] = data.data[key].slice(2);
 	});
 

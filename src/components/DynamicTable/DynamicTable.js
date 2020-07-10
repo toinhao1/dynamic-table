@@ -20,6 +20,7 @@ const DynamicTable = (props) => {
 					<TableRows
 						numberOfRows={props.numberOfRows}
 						numberOfCols={props.columnsToDisplay}
+						columnsToDisplay={props.columnsToDisplay}
 					/>
 				</tbody>
 			</Table>

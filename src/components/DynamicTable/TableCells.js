@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-const TableCells = (props) => {
+const TableCells = ({ columnsToDisplay }) => {
 	const { dropdown, data } = useSelector((state) => state);
 
 	// useEffect(() => {
@@ -19,10 +19,11 @@ const TableCells = (props) => {
 	//     }
 	//   }
 	// }
+	console.log(columnsToDisplay);
 	return (
 		<>
-			{dropdown.dropdownOptions &&
-				dropdown.dropdownOptions.map((each, index) => {
+			{columnsToDisplay &&
+				[...columnsToDisplay, 0].map((each, index) => {
 					return <td key={index}>{''}</td>;
 				})}
 		</>
