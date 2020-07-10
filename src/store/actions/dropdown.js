@@ -11,7 +11,6 @@ export const setFirstColStatus = (isCorrect) => {
 
 export const setDropDownOptions = () => (dispatch, getState) => {
 	const initialOptions = getState().data.excelData;
-	console.log(initialOptions);
 	let paramsObject = {};
 	const availableOptions = Object.keys(initialOptions).map((key) => {
 		paramsObject[initialOptions[key][0].value] = { columnIndex: '' };

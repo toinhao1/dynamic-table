@@ -1,30 +1,43 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-const TableCells = ({ columnsToDisplay }) => {
+const TableCells = ({ columnsToDisplay, rowIndex }) => {
 	const { dropdown, data } = useSelector((state) => state);
+	const { cellData, setCellData } = useState();
+	const { paramsObject, firstColSetCorrectly } = dropdown;
 
-	// useEffect(() => {
-	// 	console.log(props.numberOfCols);
+	const renderCorrectData = (cellIndex) => {
+		for (const key in paramsObject) {
+			if (paramsObject[key].columnIndex === cellIndex) {
+				return data.parsedData[key][rowIndex].value;
+			}
+		}
+		// if (paramsObject['Device Type'].columnIndex === cellIndex) {
+		// 	return data.parsedData['Device Type'][rowIndex].value;
+		// }
+		// return Object.keys(paramsObject).forEach((key) => {
+		// 	if (paramsObject[key].columnIndex === cellIndex) {
+		// 		return data.parsedData[key][rowIndex].value;
+		// 		// return (
+		// 		// 	// <td key={data.parsedData[key][rowIndex].id}>
+		// 		// 	<input value={data.parsedData[key][rowIndex].value || ''} />
+		// 		// 	// </td>
+		// 		// );
+		// 	}
+		// });
+	};
 
-	// 	props.numberOfCols.length += 1;
-	// }, [props.numberOfCols]);
-	// const renderCorrectData = () => {
-	//   for (let key in dropdown.paramsObject) {
-	//     if (dropdown.paramsObject[key].columnIndex) {
-	//       dropdown.dropdownOptions.map((each, index) => {
-
-	// 				return <td key={index}>{''}</td>;
-	// 			})
-	//     }
-	//   }
-	// }
-	console.log(columnsToDisplay);
 	return (
 		<>
 			{columnsToDisplay &&
 				[...columnsToDisplay, 0].map((each, index) => {
-					return <td key={index}>{''}</td>;
+					return (
+						<td>
+							<input
+								value={(firstColSetCorrectly && renderCorrectData(index)) || ''}
+							/>
+						</td>
+					);
 				})}
 		</>
 	);

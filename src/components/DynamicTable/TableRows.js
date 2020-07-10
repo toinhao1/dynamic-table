@@ -14,7 +14,10 @@ const TableRows = ({ numberOfRows, columnsToDisplay }) => {
 					.map((x, index) => {
 						return (
 							<tr key={x.id}>
-								<TableCells columnsToDisplay={columnsToDisplay} />
+								<TableCells
+									rowIndex={index}
+									columnsToDisplay={columnsToDisplay}
+								/>
 							</tr>
 						);
 					})}
