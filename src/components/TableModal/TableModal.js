@@ -17,7 +17,6 @@ import './styles.css';
 const TableModal = () => {
 	const [dataHeaders, setDataHeaders] = useState('');
 	const [numberOfRows, setNumberOfRows] = useState('');
-	const [arrayOfRows, setArrayofRows] = useState([]);
 	const [columnsToDisplay, setColumnsToDisplay] = useState();
 
 	const { components, data } = useSelector((state) => state);
@@ -26,7 +25,6 @@ const TableModal = () => {
 	const closeModal = () => {
 		setDataHeaders('');
 		setNumberOfRows('');
-		setArrayofRows('');
 		setColumnsToDisplay('');
 		dispatch(closeTableModal());
 	};
@@ -51,11 +49,8 @@ const TableModal = () => {
 		handleSettingNumberOfRows(value);
 	};
 
-	const handleSettingNumberOfRows = (length) => {
-		setNumberOfRows(length);
-		let arrayToMap = [];
-		arrayToMap.length = length;
-		setArrayofRows(arrayToMap);
+	const handleSettingNumberOfRows = (numberOfStartingRow) => {
+		setNumberOfRows(numberOfStartingRow);
 	};
 
 	return (
@@ -98,7 +93,7 @@ const TableModal = () => {
 				</div>
 				<DynamicTable
 					columnsToDisplay={columnsToDisplay}
-					arrayOfRows={arrayOfRows}
+					numberOfRows={numberOfRows}
 					dataHeaders={dataHeaders}
 				/>
 				<div className="button-container">

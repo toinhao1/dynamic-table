@@ -3,6 +3,7 @@ import { LOAD_DATA } from '../actions/data';
 const initialState = {
 	excelData: {},
 	fileName: '',
+	parsedData: {},
 };
 
 export default (state = initialState, action) => {
@@ -12,7 +13,7 @@ export default (state = initialState, action) => {
 				...state,
 				excelData: action.data.data,
 				fileName: action.data.filname,
-				parsedDate: action.parsedData,
+				parsedData: action.parsedData,
 			};
 		default:
 			return state;

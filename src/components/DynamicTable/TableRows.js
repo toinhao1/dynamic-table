@@ -3,19 +3,21 @@ import { useSelector } from 'react-redux';
 
 import TableCells from './TableCells';
 
-const TableRows = (props) => {
-	const { dropdown, data } = useSelector((state) => state);
+const TableRows = ({ numberOfRows }) => {
+	const { parsedData } = useSelector((state) => state.data);
 
 	return (
 		<>
-			{props.arrayOfRows &&
-				[...props.arrayOfRows].map((x, index) => {
-					return (
-						<tr key={index + 'odfbeuwib'}>
-							<TableCells />
-						</tr>
-					);
-				})}
+			{numberOfRows &&
+				parsedData['Device Type']
+					.slice(numberOfRows, parsedData['Device Type'].length - 1)
+					.map((x, index) => {
+						return (
+							<tr key={x.id}>
+								<TableCells />
+							</tr>
+						);
+					})}
 		</>
 	);
 };
