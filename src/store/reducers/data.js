@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				excelData: action.data.data,
-				fileName: action.data.filname,
+				fileName: action.data.filename,
 				parsedData: action.parsedData,
 			};
 		default:

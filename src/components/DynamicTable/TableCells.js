@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { FormControl } from 'react-bootstrap';
 
 const TableCells = ({ columnsToDisplay, rowIndex }) => {
 	const { dropdown, data } = useSelector((state) => state);
-	const { cellData, setCellData } = useState();
+	const [cellValues, setCellValue] = useState({});
 	const { paramsObject, firstColSetCorrectly } = dropdown;
 
 	const renderCorrectData = (cellIndex) => {
@@ -12,19 +13,10 @@ const TableCells = ({ columnsToDisplay, rowIndex }) => {
 				return data.parsedData[key][rowIndex].value;
 			}
 		}
-		// if (paramsObject['Device Type'].columnIndex === cellIndex) {
-		// 	return data.parsedData['Device Type'][rowIndex].value;
-		// }
-		// return Object.keys(paramsObject).forEach((key) => {
-		// 	if (paramsObject[key].columnIndex === cellIndex) {
-		// 		return data.parsedData[key][rowIndex].value;
-		// 		// return (
-		// 		// 	// <td key={data.parsedData[key][rowIndex].id}>
-		// 		// 	<input value={data.parsedData[key][rowIndex].value || ''} />
-		// 		// 	// </td>
-		// 		// );
-		// 	}
-		// });
+	};
+
+	const handleChangeCellValue = (cellIndex, e) => {
+		setCellValue({ ...cellValues, [cellIndex]: e.currentTarget.value });
 	};
 
 	return (
@@ -33,8 +25,13 @@ const TableCells = ({ columnsToDisplay, rowIndex }) => {
 				[...columnsToDisplay, 0].map((each, index) => {
 					return (
 						<td>
-							<input
-								value={(firstColSetCorrectly && renderCorrectData(index)) || ''}
+							<FormControl
+								onChange={(e) => handleChangeCellValue(index, e)}
+								value={
+									(firstColSetCorrectly &&
+										(cellValues[index] || renderCorrectData(index))) ||
+									''
+								}
 							/>
 						</td>
 					);
