@@ -10,7 +10,9 @@ const TableCells = ({ columnsToDisplay, rowIndex }) => {
 	const renderCorrectData = (cellIndex) => {
 		for (const key in paramsObject) {
 			if (paramsObject[key].columnIndex === cellIndex) {
-				return data.parsedData[key][rowIndex].value;
+				if (rowIndex >= 0 && rowIndex < data.parsedData[key].length - 1) {
+					return data.parsedData[key][rowIndex].value;
+				}
 			}
 		}
 	};
@@ -27,6 +29,7 @@ const TableCells = ({ columnsToDisplay, rowIndex }) => {
 						<td>
 							<FormControl
 								onChange={(e) => handleChangeCellValue(index, e)}
+								disabled={index === 0 ? true : false}
 								value={
 									(firstColSetCorrectly &&
 										(cellValues[index] || renderCorrectData(index))) ||

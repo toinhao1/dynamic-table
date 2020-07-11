@@ -9,18 +9,16 @@ const TableRows = ({ numberOfRows, columnsToDisplay }) => {
 	return (
 		<>
 			{numberOfRows &&
-				parsedData['Device Type']
-					.slice(numberOfRows, parsedData['Device Type'].length - 1)
-					.map((x, index) => {
-						return (
-							<tr key={x.id}>
-								<TableCells
-									rowIndex={index}
-									columnsToDisplay={columnsToDisplay}
-								/>
-							</tr>
-						);
-					})}
+				parsedData['Device Type'].slice(numberOfRows).map((x, index) => {
+					return (
+						<tr key={x.id}>
+							<TableCells
+								rowIndex={index + +numberOfRows - 1}
+								columnsToDisplay={columnsToDisplay}
+							/>
+						</tr>
+					);
+				})}
 		</>
 	);
 };
