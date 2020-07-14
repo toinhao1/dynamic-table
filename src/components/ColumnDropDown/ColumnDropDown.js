@@ -38,7 +38,9 @@ const ColumnDropDown = (props) => {
 		return (
 			<div>
 				<Dropdown>
-					<Dropdown.Toggle>{selectedOption || '(Skip)'}</Dropdown.Toggle>
+					<Dropdown.Toggle style={{ width: 200 }}>
+						{selectedOption || '(Skip)'}
+					</Dropdown.Toggle>
 					<Dropdown.Menu id="nav-dropdown-menu">
 						<Dropdown.Item onClick={() => handleSetOption('(Skip)')}>
 							(Skip)

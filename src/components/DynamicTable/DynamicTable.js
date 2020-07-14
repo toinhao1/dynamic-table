@@ -9,7 +9,7 @@ import './styles.css';
 const DynamicTable = (props) => {
 	return (
 		<div className="table-container">
-			<Table striped bordered hover>
+			<Table responsive striped bordered hover>
 				<thead>
 					<TableHeaders
 						columnsToDisplay={props.columnsToDisplay}
