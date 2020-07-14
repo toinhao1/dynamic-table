@@ -30,31 +30,43 @@ const TableCells = ({ columnsToDisplay, rowIndex }) => {
 		let isInvalid = false;
 		if (value === '') isInvalid = true;
 
-		// if (paramsObject['Name'].columnIndex === cellIndex && value === '') {
-		// 	isInvalid = true;
-		// } else if (
-		// 	paramsObject['Location'].columnIndex === cellIndex &&
-		// 	value === ''
-		// ) {
-		// 	isInvalid = true;
-		// } else if (paramsObject['Bus Address'].columnIndex === cellIndex) {
-		// 	const busArray = [
-		// 		'BUS1',
-		// 		'BUS2',
-		// 		'BUS3',
-		// 		'BUS4',
-		// 		'BUS5',
-		// 		'BUS6',
-		// 		'BUS7',
-		// 		'BUS8',
-		// 	];
-		// 	busArray.forEach((bus) => {
-		// 		if (value !== bus || value === '') {
-		// 			isInvalid = true;
-		// 		}
-		// 	});
-		// }
+		console.log('here fd ', typeof value);
+		if (
+			(paramsObject['Name'].columnIndex === cellIndex &&
+				typeof value !== 'string') ||
+			(paramsObject['Location'].columnIndex === cellIndex &&
+				typeof value !== 'string')
+		) {
+			return (isInvalid = true);
+		}
 
+		if (
+			(paramsObject["T'max"].columnIndex === cellIndex && isNaN(value)) ||
+			(paramsObject["T'mid"].columnIndex === cellIndex && isNaN(value)) ||
+			(paramsObject["T'min"].columnIndex === cellIndex && isNaN(value))
+		) {
+			return (isInvalid = true);
+		}
+		if (paramsObject['Bus Address'].columnIndex === cellIndex) {
+			const busArray = [
+				'BUS1',
+				'BUS2',
+				'BUS3',
+				'BUS4',
+				'BUS5',
+				'BUS6',
+				'BUS7',
+				'BUS8',
+			];
+			const isABus = busArray.find((element) => element === value);
+			if (!isABus) isInvalid = true;
+		}
+
+		if (paramsObject['Rotation Direction'].columnIndex === cellIndex) {
+			const rotationEnum = ['cw', 'ccw'];
+			const isRotation = rotationEnum.find((element) => element === value);
+			if (!isRotation) isInvalid = true;
+		}
 		return isInvalid;
 	};
 
